@@ -15,7 +15,7 @@ export interface IComment {
   replies?: RepliesType[]
 }
 
-type CommentProps = {
+export type CommentProps = {
   content: string
   createdAt: string
   score: number
