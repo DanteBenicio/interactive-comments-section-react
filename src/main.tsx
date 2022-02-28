@@ -5,6 +5,8 @@ import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyle />
+    <ThemeProvider theme={theme}>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
