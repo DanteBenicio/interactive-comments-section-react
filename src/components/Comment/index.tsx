@@ -32,5 +32,15 @@ export default function Comment({
         </Content>
       </Wrapper>
     </Container>
+      {isReply && (
+        <Container>
+          <WrapperResponding>
+            <UserAvatarIsResponding src={currentUser?.image.png} />
+            <TextContent wrap="wrap" autoFocus ref={textareaRef} value={`@${user.username}`} />
+            <ReplyButton>Reply</ReplyButton>
+          </WrapperResponding>
+        </Container>
+      )}
+    </>
   );
 }
