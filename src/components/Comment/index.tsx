@@ -11,6 +11,7 @@ export default function Comment({
   user, createdAt, content, score, replies,
 }: CommentProps) {
   return (
+    <>
     <Container>
       <Wrapper>
         <ScoreWrapper>
