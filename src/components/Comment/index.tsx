@@ -77,6 +77,33 @@ export default function Comment({
               {you && <YouLabel>you</YouLabel>}
               <UserCreatedAt>{createdAt}</UserCreatedAt>
             </UserInfo>
+            {you ? (
+              <ActionButtons>
+                <Delete onClick={() => deleteComment(id)}>
+                  <img src="assets/icon-delete.svg" alt="delete icon" />
+                  Delete
+                </Delete>
+                <Edit onClick={() => setEdit(true)}>
+                  <img src="assets/icon-edit.svg" alt="edit icon" />
+                  Edit
+                </Edit>
+              </ActionButtons>
+            ) : (
+              <Reply>
+                <img src="assets/icon-reply.svg" alt="reply icon" />
+                Reply
+              </Reply>
+            )}
+            {edit ? (
+              <>
+                <TextContent
+                  autoFocus
+                  ref={textareaRef}
+                  defaultValue={content}
+                />
+                <UpdateButton onClick={() => editComment(id)}>Update</UpdateButton>
+              </>
+            ) : (
           <UserContent>{content}</UserContent>
         </Content>
       </Wrapper>
