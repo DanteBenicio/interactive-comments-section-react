@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     background-color: ${({ theme }) => theme.neutral.veryLightGray};
   }
+
+  button {
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;
