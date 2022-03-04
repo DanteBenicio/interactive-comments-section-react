@@ -1,3 +1,7 @@
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
+import IconMinus from '../../svgs/icon-minus.jsx';
+import IconPlus from '../../svgs/icon-plus.jsx';
 import { CommentProps } from '../../types/comment';
 import {
   ActionButtons,
@@ -10,6 +14,49 @@ import {
 export default function Comment({
   user, createdAt, content, score, replies, you, id, comments, setComments,
 }: CommentProps) {
+  const [up, setUp] = useState<number>(score);
+  const [isReply, setIsReply] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(false);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  // async function replyComment() {
+  // }
+
+  async function deleteComment(commentId: number) {
+    const filteredComments = comments.filter(comment => comment.id !== commentId);
+
+    try {
+      const response = await axios.delete(`http://localhost:3001/comments/${commentId}`);
+      const { status } = response;
+
+      console.log(status);
+      setComments(filteredComments);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function editComment(commentId: number) {
+    if (!textareaRef.current?.value) {
+      return;
+    }
+
+    const patchComment = comments.map(comment => {
+      if (comment.id === id) {
+        return { ...comment, content: textareaRef.current?.value };
+      }
+
+      return comment;
+    });
+
+    // try {
+    //   const response = await axios.put(`http://localhost:3001/comments/${commentId}`, );
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    console.log(patchComment[0]);
+  }
+
   return (
     <>
     <Container>
