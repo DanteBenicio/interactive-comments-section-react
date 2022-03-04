@@ -25,6 +25,22 @@ export default function App() {
     };
   }, []);
 
+  async function deleteComment(commentId: number) {
+    const filteredComments = comments.filter(comment => comment.id !== commentId);
+
+    try {
+      const response = await axios.delete(`http://localhost:3001/comments/${commentId}`);
+      const { status } = response;
+
+      if (status === 200) {
+        setComments(filteredComments);
+        setShowModal({ commentId: null, showModal: false });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <Section>
       {comments.length ? (
