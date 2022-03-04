@@ -9,7 +9,6 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-    <ThemeProvider theme={colors}>
       <App />
     </ThemeProvider>
   </React.StrictMode>,
