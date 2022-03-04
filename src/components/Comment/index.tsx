@@ -8,7 +8,7 @@ import {
 } from './styles';
 
 export default function Comment({
-  user, createdAt, content, score, replies,
+  user, createdAt, content, score, replies, you, id, comments, setComments,
 }: CommentProps) {
   return (
     <>
