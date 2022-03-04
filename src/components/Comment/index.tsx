@@ -59,21 +59,21 @@ export default function Comment({
 
   return (
     <>
-    <Container>
-      <Wrapper>
-        <ScoreWrapper>
-          <Plus>
-            <ImageIcon src="assets/icon-plus.svg" alt="plus icon" />
-          </Plus>
-          <Score>{score}</Score>
-          <Minus>
-            <ImageIcon src="assets/icon-minus.svg" alt="minus icon" />
-          </Minus>
-        </ScoreWrapper>
-        <Content>
-          <UserInfo>
-            <Image src={user.image.png} alt="userimage in circle" />
-            <Username>{user.username}</Username>
+      <Container>
+        <Wrapper>
+          <ScoreWrapper>
+            <Plus onClick={() => setUp(prevUp => prevUp + 1)}>
+              <IconPlus />
+            </Plus>
+            <Score>{up}</Score>
+            <Minus onClick={() => setUp(prevUp => prevUp - 1)}>
+              <IconMinus />
+            </Minus>
+          </ScoreWrapper>
+          <Content>
+            <UserInfo>
+              <Image src={user.image.png} alt="userimage in circle" />
+              <Username>{user.username}</Username>
             <UserCreatedAt>{createdAt}</UserCreatedAt>
           </UserInfo>
           <UserContent>{content}</UserContent>
