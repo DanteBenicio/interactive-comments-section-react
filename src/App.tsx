@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Comment from './components/Comment';
+import CurrentUser from './components/CurrentUser';
 import Section from './components/Section';
 import { IComment } from './types/comment';
 
