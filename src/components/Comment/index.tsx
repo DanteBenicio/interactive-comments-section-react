@@ -1,10 +1,10 @@
 import { CommentProps } from '../../types/comment';
 import {
-  Container, Content, Image,
-  ImageIcon,
-  Minus, Plus, Score,
-  ScoreWrapper, UserContent, UserCreatedAt,
-  UserInfo, Username, Wrapper,
+  ActionButtons,
+  Container, Content, Delete, Edit, Image,
+  Minus, Plus, Reply, Score,
+  ScoreWrapper, TextContent, UpdateButton, UserContent, UserCreatedAt,
+  UserInfo, Username, Wrapper, YouLabel,
 } from './styles';
 
 export default function Comment({
