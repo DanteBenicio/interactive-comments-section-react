@@ -74,6 +74,7 @@ export default function Comment({
             <UserInfo>
               <Image src={user.image.png} alt="userimage in circle" />
               <Username>{user.username}</Username>
+              {you && <YouLabel>you</YouLabel>}
             <UserCreatedAt>{createdAt}</UserCreatedAt>
           </UserInfo>
           <UserContent>{content}</UserContent>
