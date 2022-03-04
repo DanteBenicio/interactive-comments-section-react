@@ -10,7 +10,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get('http://localhost:3001/comments');
+        const response = await axios.get('http://localhost:3001/comments?limit=2');
         const { data } = response;
 
         setComments(data);
@@ -19,7 +19,9 @@ export default function App() {
       }
     })();
 
-    return () => setComments([]);
+    return () => {
+      setComments([]);
+    };
   }, []);
 
   return (
