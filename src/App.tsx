@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Comment from './components/Comment';
-import CurrentUser from './components/CurrentUser';
 import Section from './components/Section';
 import { IComment } from './types/comment';
 
@@ -11,7 +10,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get('http://localhost:3001/comments?limit=2');
+        const response = await axios.get('http://localhost:3001/comments');
         const { data } = response;
 
         setComments(data);
