@@ -19,9 +19,7 @@ export default function App() {
       }
     })();
 
-    return () => {
-      setComments([]);
-    };
+    return () => setComments([]);
   }, []);
 
   return (
@@ -35,6 +33,14 @@ export default function App() {
           replies={comment.replies}
         />
       ))}
+          <CurrentUser
+            setComments={setComments}
+            comments={comments}
+          />
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </Section>
   );
 }
