@@ -104,19 +104,14 @@ export default function Comment({
                 <UpdateButton onClick={() => editComment(id)}>Update</UpdateButton>
               </>
             ) : (
-          <UserContent>{content}</UserContent>
-        </Content>
-      </Wrapper>
-    </Container>
-      {isReply && (
-        <Container>
-          <WrapperResponding>
-            <UserAvatarIsResponding src={currentUser?.image.png} />
-            <TextContent wrap="wrap" autoFocus ref={textareaRef} value={`@${user.username}`} />
-            <ReplyButton>Reply</ReplyButton>
-          </WrapperResponding>
-        </Container>
-      )}
+              <UserContent>{content}</UserContent>
+            )}
+          </Content>
+        </Wrapper>
+      </Container>
+      {/* {isReply && (
+
+      )} */}
     </>
   );
 }
