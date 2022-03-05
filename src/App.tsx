@@ -18,6 +18,7 @@ export default function App() {
         const data2 = response2.data;
 
         setComments(data);
+        setCurrentUser(data2);
       } catch (error) {
         console.error(error);
       }
