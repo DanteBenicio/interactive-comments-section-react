@@ -55,6 +55,28 @@ export default function App() {
 
   return (
     <Section>
+      <ModalContainer showModal={showModal?.showModal!}>
+        <ModalContent>
+          <Title>Delete Comment</Title>
+          <Description>
+            Are you sure you want to delete this comment?
+            This will remove the comment and can&apos;t be undone
+          </Description>
+          <ButtonsContainer>
+            <CancelButton
+              onClick={() => setShowModal({ commentId: null, showModal: false })}
+            >
+              No, Cancel
+            </CancelButton>
+            <DeleteButton
+              onClick={() => deleteComment(showModal?.commentId!)}
+            >
+              Yes, Delete
+            </DeleteButton>
+          </ButtonsContainer>
+        </ModalContent>
+      </ModalContainer>
+
       {comments.length ? (
         <>
           {comments.map((comment) => (
