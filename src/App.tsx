@@ -8,6 +8,8 @@ import {
   Description, ModalContainer, ModalContent, Title,
 } from './styles/app-styles';
 import { IComment } from './types/comment';
+import { CurrentUserType } from './types/currentUser';
+import { IShowModal } from './types/modal';
 
 export default function App() {
   const [comments, setComments] = useState<IComment[] | []>([]);
