@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Comment from './components/Comment';
 import CurrentUser from './components/CurrentUser';
 import Section from './components/Section';
+import {
+  ButtonsContainer, CancelButton, DeleteButton,
+  Description, ModalContainer, ModalContent, Title,
+} from './styles/app-styles';
 import { IComment } from './types/comment';
 
 export default function App() {
