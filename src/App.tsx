@@ -91,6 +91,8 @@ export default function App() {
               you={comment.you}
               setComments={setComments}
               comments={comments}
+              setShowModal={setShowModal}
+              currentUser={currentUser!}
             />
           ))}
           <CurrentUser
