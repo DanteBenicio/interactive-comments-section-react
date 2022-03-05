@@ -34,7 +34,7 @@ export default function CurrentUser({
       return;
     }
 
-    const commentsLength = comments?.map(comment => {
+    const commentsTotalLength = comments?.map(comment => {
       if (comment.replies?.length) {
         return [comment, ...comment.replies];
       }
@@ -42,10 +42,8 @@ export default function CurrentUser({
       return comment;
     }).flat().length;
 
-    console.log(commentsLength);
-
     const commentData: IComment = {
-      id: commentsLength! + 1,
+      id: commentsTotalLength + 1,
       you: true,
       content: textareaRef.current?.value!,
       createdAt: '1 week',
