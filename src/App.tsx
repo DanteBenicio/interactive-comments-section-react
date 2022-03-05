@@ -14,6 +14,9 @@ export default function App() {
         const response = await axios.get('http://localhost:3001/comments');
         const { data } = response;
 
+        const response2 = await axios.get('http://localhost:3001/currentUser');
+        const data2 = response2.data;
+
         setComments(data);
       } catch (error) {
         console.error(error);
