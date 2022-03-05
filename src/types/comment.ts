@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from 'react';
+import { CurrentUserType } from './currentUser';
+import { IShowModal } from './modal';
 import { RepliesType } from './replies';
 
 export interface IComment {
@@ -23,7 +24,9 @@ export type CommentProps = {
   createdAt: string
   you?: boolean
   comments: IComment[]
-  setComments: Dispatch<SetStateAction<[] | IComment[]>>
+  setComments: (comments: IComment[]) => void
+  setShowModal: (showModal: IShowModal) => void
+  currentUser: CurrentUserType
   score: number
   user: {
     image: {
