@@ -1,11 +1,28 @@
 import styled from 'styled-components';
 
+export const FullContainer = styled.div`
+  max-width: 51rem;
+`;
+
 export const Container = styled.article`
   font-size: 1.6rem;
 
   padding: 1.5rem;
   max-width: 51rem;
   min-height: 16rem;
+
+  border-radius: 0.8rem;
+
+  background-color: ${({ theme }) => theme.neutral.white};
+`;
+
+export const ContainerAddReply = styled.article`
+  font-size: 1.6rem;
+
+  padding: 1.5rem;
+  max-width: 51rem;
+  min-height: auto;
+  margin: 1.6rem 0 0;
 
   border-radius: 0.8rem;
 
