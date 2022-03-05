@@ -13,6 +13,8 @@ import { IShowModal } from './types/modal';
 
 export default function App() {
   const [comments, setComments] = useState<IComment[] | []>([]);
+  const [showModal, setShowModal] = useState<IShowModal>();
+  const [currentUser, setCurrentUser] = useState<CurrentUserType>();
 
   useEffect(() => {
     (async () => {
