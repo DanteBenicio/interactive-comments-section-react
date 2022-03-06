@@ -165,7 +165,7 @@ export default function Comment({
                   ref={textareaRef}
                   defaultValue={content}
                 />
-                <UpdateButton onClick={() => editComment(id, false)}>Update</UpdateButton>
+                <UpdateButton onClick={() => editComment(id)}>Update</UpdateButton>
               </>
             ) : (
               <UserContent>{content}</UserContent>
