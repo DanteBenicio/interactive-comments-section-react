@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { IComment } from './comment';
 import { IShowModal } from './modal';
 
