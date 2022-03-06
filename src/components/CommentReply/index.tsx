@@ -27,7 +27,12 @@ export default function CommentReply({
   }
 
   async function editCommentReply(commentId: number) {
-    const commentReply = commentsReplies?.find(reply => reply.id === commentId)!;
+    const commentRoot: IComment = comments.find(comment => {
+      if (comment.replies?.length) {
+        return comment.replies?.find(reply => {
+          if (reply.id === commentId) {
+            return comment;
+          }
 
     let commentRoot;
 
