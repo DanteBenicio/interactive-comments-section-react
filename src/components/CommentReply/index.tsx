@@ -137,7 +137,11 @@ export default function CommentReply({
                   ref={textareaRef}
                   defaultValue={`${content}`}
                 />
-                <UpdateButton onClick={() => editComment(id, true)}>Update</UpdateButton>
+                <UpdateButton
+                  onClick={() => editCommentReply(id)}
+                >
+                  Update
+                </UpdateButton>
               </>
             ) : (
               <UserContent>{`@${replyingTo} ${content}`}</UserContent>
