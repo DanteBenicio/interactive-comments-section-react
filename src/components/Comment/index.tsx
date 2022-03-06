@@ -184,15 +184,17 @@ export default function Comment({
       )}
       {commentReplies?.length! > 0 && commentReplies?.map(reply => (
         <CommentReply
+          comments={comments}
+          commentsReplies={commentReplies}
+          setCommentsReplies={setCommentReplies!}
           content={reply.content}
           createdAt={reply.createdAt}
-          editComment={editComment}
           id={reply.id}
           replyingTo={reply.replyingTo}
           score={reply.score}
           setShowModal={setShowModal}
           user={reply.user}
-          key={reply.id}
+          key={reply.id + Math.random() * 1000}
           you={reply.you}
         />
       ))}
