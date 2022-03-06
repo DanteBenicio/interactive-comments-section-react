@@ -6,7 +6,8 @@ import {
 } from './styles';
 import IconMinus from '../../svgs/icon-minus.jsx';
 import IconPlus from '../../svgs/icon-plus.jsx';
-import { CommentReplyProps } from '../../types/replies';
+import { CommentReplyProps, RepliesType } from '../../types/replies';
+import { IComment } from '../../types/comment';
 
 export default function CommentReply({
   content, createdAt, id, replyingTo, score, user, you, setShowModal,
