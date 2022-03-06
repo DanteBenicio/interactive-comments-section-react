@@ -34,15 +34,9 @@ export default function CommentReply({
             return comment;
           }
 
-    let commentRoot;
-
-    for (let i = 0; i < comments?.length; i++) {
-      if (comments[i].replies?.length) {
-        if (comments[i].replies![i].id === commentReply.id) {
-          commentRoot = comments[i];
-
-          break;
-        }
+          return false;
+        });
+      }
       }
     }
 
