@@ -97,27 +97,7 @@ export default function Comment({
     }
   }
 
-  async function editComment(commentId: number, isReplyComment: boolean) {
-    if (isReplyComment) {
-      const commentsTotalLength = comments?.map(comment => {
-        if (comment.replies?.length) {
-          return [comment, ...comment.replies];
-        }
-
-        return comment;
-      }).flat().length;
-
-      const commentReply = commentReplies?.filter(reply => reply.id === commentId);
-
-      const commentRoot = comments.filter(comment => {
-        comment.replies
-      })
-
-      console.log(commentReply, commentRoot);
-
-      return;
-    }
-
+  async function editComment(commentId: number) {
     const patchComment: IComment[] = comments.map(comment => {
       if (comment.id === commentId) {
         return { ...comment, content: textareaRef.current?.value! };
