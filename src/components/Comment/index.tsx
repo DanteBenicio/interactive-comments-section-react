@@ -2,7 +2,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-no-bind */
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import IconMinus from '../../svgs/icon-minus.jsx';
 import IconPlus from '../../svgs/icon-plus.jsx';
 import { CommentProps, IComment } from '../../types/comment';
