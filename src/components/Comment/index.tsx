@@ -54,8 +54,16 @@ export default function Comment({
   }
 
   async function replyComment() {
+    const commentsTotalLength = comments?.map(comment => {
+      if (comment.replies?.length) {
+        return [comment, ...comment.replies];
+      }
+
+      return comment;
+    }).flat().length;
+
     const newCommentReply: RepliesType = {
-      id: commentReplies!.length! + 1,
+      id: commentsTotalLength! + 1,
       content: textareaRef.current?.value!,
       createdAt: '1 day',
       replyingTo: user.username,
