@@ -21,7 +21,7 @@ export default function Comment({
   user, createdAt, content, score, replies,
   you, id, comments, setComments, setShowModal, currentUser,
 }: CommentProps) {
-  const [commentReplies, setCommentReplies] = useState<RepliesType[] | undefined>(replies);
+  const [commentReplies, setCommentReplies] = useState<RepliesType[]>(replies!);
   const [up, setUp] = useState<number>(score);
   const [edit, setEdit] = useState<boolean>(false);
   const [isReply, setIsReply] = useState<boolean>(false);
