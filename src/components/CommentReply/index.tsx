@@ -61,6 +61,38 @@ export default function CommentReply({
     }
   }
 
+  async function deleteCommentReply(commentId: number) {
+    const commentReplyRemoved = commentsReplies.filter(reply => reply.id !== commentId);
+    const commentReply = commentsReplies.find(reply => reply.id === commentId)!;
+
+    console.log(commentReply);
+
+    const commentRoot: IComment = comments.find(comment => {
+      if (comment.replies?.length) {
+        return comment.replies?.find(reply => {
+          if (reply.id === commentId) {
+            return comment;
+          }
+
+          return false;
+        });
+      }
+
+      return false;
+    })!;
+
+    try {
+      const response = await axios.put(`http://localhost:3001/comments/${commentRoot?.id}`, { ...commentRoot, replies: commentReplyRemoved });
+      const { status } = response;
+
+      if (status === 200) {
+        setCommentsReplies(commentReplyRemoved);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <FullContainerReply>
       <Container>
