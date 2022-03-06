@@ -26,6 +26,42 @@ export default function CommentReply({
     });
   }
 
+  async function editCommentReply(commentId: number) {
+    const commentReply = commentsReplies?.find(reply => reply.id === commentId)!;
+
+    let commentRoot;
+
+    for (let i = 0; i < comments?.length; i++) {
+      if (comments[i].replies?.length) {
+        if (comments[i].replies![i].id === commentReply.id) {
+          commentRoot = comments[i];
+
+          break;
+        }
+      }
+    }
+
+    const newCommentReply: RepliesType[] = commentRoot?.replies?.map(reply => {
+      if (reply.id === commentId) {
+        return { ...reply, content: textareaRef.current?.value! };
+      }
+
+      return reply;
+    })!;
+
+    try {
+      const response = await axios.put(`http://localhost:3001/comments/${commentRoot?.id}`, { ...commentRoot, replies: newCommentReply });
+      const { status } = response;
+
+      if (status === 200) {
+        setCommentsReplies(newCommentReply);
+        setEdit(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <FullContainerReply>
       <Container>
