@@ -9,7 +9,8 @@ import IconPlus from '../../svgs/icon-plus.jsx';
 import { CommentReplyProps } from '../../types/replies';
 
 export default function CommentReply({
-  content, createdAt, id, replyingTo, score, user, you, setShowModal, editComment,
+  content, createdAt, id, replyingTo, score, user, you, setShowModal,
+  comments, commentsReplies, setCommentsReplies,
 }: CommentReplyProps) {
   const [up, setUp] = useState<number>(score);
   const [edit, setEdit] = useState<boolean>(false);
