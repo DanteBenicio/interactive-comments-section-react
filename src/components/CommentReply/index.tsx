@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import axios from 'axios';
 import {
   ActionButtons, Container, Content, Delete, Edit, FullContainerReply,
   Image, Minus, Plus, Reply, Score, ScoreWrapper, TextContent, UpdateButton,
@@ -39,8 +40,9 @@ export default function CommentReply({
           return false;
         });
       }
-      }
-    }
+
+      return false;
+    })!;
 
     const newCommentReply: RepliesType[] = commentRoot?.replies?.map(reply => {
       if (reply.id === commentId) {
@@ -117,7 +119,7 @@ export default function CommentReply({
             </UserInfo>
             {you ? (
               <ActionButtons>
-                <Delete onClick={() => setShowModal({ commentId: id, showModal: true })}>
+                <Delete onClick={() => deleteCommentReply(id)}>
                   <img src="assets/icon-delete.svg" alt="delete icon" />
                   Delete
                 </Delete>
