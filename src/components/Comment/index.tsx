@@ -27,6 +27,15 @@ export default function Comment({
   const [isReply, setIsReply] = useState<boolean>(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get('http://localhost:3001/comments');
+      const { data } = response;
+
+      setComments(data);
+    })();
+  }, [commentReplies]);
+
   if (edit || isReply) {
     document?.querySelector('body')!.addEventListener('click', e => {
       const section = document.querySelector('section');
