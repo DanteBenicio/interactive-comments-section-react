@@ -135,7 +135,7 @@ export default function CommentReply({
                 <TextContent
                   autoFocus
                   ref={textareaRef}
-                  defaultValue={`@${replyingTo} ${content}`}
+                  defaultValue={`${content}`}
                 />
                 <UpdateButton onClick={() => editComment(id, true)}>Update</UpdateButton>
               </>
