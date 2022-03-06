@@ -7,5 +7,7 @@ export interface RepliesType extends IComment {
 
 export interface CommentReplyProps extends RepliesType {
   setShowModal: (modal: IShowModal) => void
-  editComment: (commentId: number, isReply: boolean) => Promise<void>
+  comments: IComment[]
+  commentsReplies: RepliesType[]
+  setCommentsReplies: Dispatch<SetStateAction<RepliesType[]>>
 }
