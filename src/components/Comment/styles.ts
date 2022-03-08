@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { editIsActiveType } from '../CommentReply/styles';
 
 export const FullContainer = styled.div`
   max-width: 51rem;
@@ -34,8 +35,24 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
   gap: 1.6rem;
+
+  @media screen and (max-width: 540px) {
+    flex-direction: column-reverse;
+  }
+`;
+
+export const ScoreAndReply = styled.div`
+  display: block;
+
+  @media screen and (max-width: 540px) {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 export const ScoreWrapper = styled.div`
@@ -47,16 +64,20 @@ export const ScoreWrapper = styled.div`
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.veryLightGray};
+
+  @media screen and (max-width: 540px) {
+    flex-direction: row;
+  }
 `;
 
 export const Plus = styled.span`
   position: relative;
-  display: block;
+  display: grid;
+  place-items: center;
 
   width: 3rem;
   height: 3rem;
 
-  text-align: center;
   cursor: pointer;
 
   &:hover svg > path {
@@ -77,12 +98,12 @@ export const Score = styled.span`
 
 export const Minus = styled.span`
   position: relative;
-  display: block;
+  display: grid;
+  place-items: center;
 
   width: 3rem;
   height: 3rem;
 
-  text-align: center;
   cursor: pointer;
 
   &:hover svg > path {
@@ -91,7 +112,7 @@ export const Minus = styled.span`
 `;
 
 export const Image = styled.img`
-  width: 3.5rem;
+  aspect-ratio: attr(width) / attr(height);
 `;
 
 export const Content = styled.div`
@@ -132,9 +153,12 @@ export const Reply = styled.span`
 
   img {
     margin-right: 0.8rem;
-    height: 1.1rem;
+    aspect-ratio: attr(width) / attr(height);
   }
 
+  @media screen and (max-width: 540px) {
+    position: static;
+  }
 `;
 
 export const Username = styled.span`
@@ -164,7 +188,7 @@ export const UserContent = styled.p`
   word-break: break-all;
 `;
 
-export const ActionButtons = styled.div`
+export const ActionButtons = styled('div')<editIsActiveType>`
   position: absolute;
   right: 0;
   top: 0;
@@ -173,6 +197,14 @@ export const ActionButtons = styled.div`
   align-items: center;
   max-width: 120px;
   width: 100%;
+
+  @media screen and (max-width: 540px) {
+    position: static;
+
+    ${({ editIsActive }) => (editIsActive ? css`
+      display: none;
+    ` : '')}
+  }
 `;
 
 export const Delete = styled.span`
@@ -192,7 +224,7 @@ export const Delete = styled.span`
 
   img {
     margin-right: 0.8rem;
-    height: 1.1rem;
+    aspect-ratio: attr(width) / attr(height);
   }
 `;
 
@@ -213,13 +245,13 @@ export const Edit = styled.span`
 
   img {
     margin-right: 0.8rem;
-    height: 1.1rem;
+    aspect-ratio: attr(width) / attr(height);
   }
 `;
 
 export const TextContent = styled.textarea`
   flex: 1;
-  min-height: 2rem;
+  min-height: 3rem;
   width: 100%;
   padding: 0.8rem 1rem;
   margin-bottom: 1.6rem;
@@ -264,5 +296,41 @@ export const UpdateButton = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.primary.lightGrayishBlue};
+  }
+
+  @media screen and (max-width: 540px) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+`;
+
+export const CancelButton = styled.button`
+  display: none;
+  margin-left: auto;
+  height: 4rem;
+  padding: 0.8rem 1.6rem;
+
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  color: white;
+  background-color: ${({ theme }) => theme.neutral.grayishBlue};
+  border: none;
+  border-radius: 0.8rem;
+
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.primary.lightGrayishBlue};
+  }
+
+  @media screen and (max-width: 540px) {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 11.4rem;
   }
 `;

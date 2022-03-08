@@ -1,26 +1,35 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-no-bind */
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import {
+  useContext, useEffect, useRef, useState, useCallback,
+} from 'react';
+import { AppContext } from '../../context';
 import IconMinus from '../../svgs/icon-minus.jsx';
 import IconPlus from '../../svgs/icon-plus.jsx';
-import { CommentProps, IComment } from '../../types/comment';
+import { CommentProps, IComment, User } from '../../types/comment';
+import { CurrentUserType } from '../../types/currentUser';
 import { RepliesType } from '../../types/replies.js';
 import CommentReply from '../CommentReply';
 import { Button, UserAvatarIsResponding, WrapperResponding } from '../CurrentUser/styles.js';
 import {
   ActionButtons,
+  CancelButton,
   Container, ContainerAddReply, Content, Delete, Edit, FullContainer, Image,
   Minus, Plus, Reply, Score,
+  ScoreAndReply,
   ScoreWrapper, TextContent, UpdateButton, UserContent, UserCreatedAt,
   UserInfo, Username, Wrapper, YouLabel,
 } from './styles';
+import { CommentUser } from '../../model/CommentUser';
 
 export default function Comment({
   user, createdAt, content, score, replies,
-  you, id, comments, setComments, setShowModal, currentUser,
+  you, id, setShowModal, currentUser, setIsCommentReply,
 }: CommentProps) {
+  const { comments, setComments } = useContext(AppContext);
   const [commentReplies, setCommentReplies] = useState<RepliesType[]>(replies!);
   const [up, setUp] = useState<number>(score);
   const [edit, setEdit] = useState<boolean>(false);
@@ -34,24 +43,7 @@ export default function Comment({
 
       setComments(data);
     })();
-  }, [commentReplies]);
-
-  if (edit || isReply) {
-    document?.querySelector('body')!.addEventListener('click', e => {
-      const section = document.querySelector('section');
-      const main = document.querySelector('main');
-
-      if (edit) {
-        if (e.target === section || e.target === main) {
-          setEdit(false);
-        }
-      } else if (isReply) {
-        if (e.target === section || e.target === main) {
-          setIsReply(false);
-        }
-      }
-    });
-  }
+  }, [commentReplies, setComments]);
 
   // eslint-disable-next-line max-len
   const replyComment = useCallback(async (allComments: IComment[], currentUserParam: CurrentUserType) => {
@@ -98,7 +90,7 @@ export default function Comment({
     } catch (error) {
       console.error(error);
     }
-  }
+  }, [id, user.username]);
 
   async function editComment(commentId: number) {
     const patchComment: IComment[] = comments.map(comment => {
@@ -126,26 +118,20 @@ export default function Comment({
 
   return (
     <FullContainer>
-      <Container>
+      <Container data-comment={id}>
         <Wrapper>
-          <ScoreWrapper>
-            <Plus onClick={() => setUp(prevUp => prevUp + 1)}>
-              <IconPlus />
-            </Plus>
-            <Score>{up}</Score>
-            <Minus onClick={() => setUp(prevUp => prevUp - 1)}>
-              <IconMinus />
-            </Minus>
-          </ScoreWrapper>
-          <Content>
-            <UserInfo>
-              <Image src={user.image.png} alt="userimage in circle" />
-              <Username>{user.username}</Username>
-              {you && <YouLabel>you</YouLabel>}
-              <UserCreatedAt>{createdAt}</UserCreatedAt>
-            </UserInfo>
+          <ScoreAndReply>
+            <ScoreWrapper>
+              <Plus onClick={() => setUp(prevUp => prevUp + 1)}>
+                <IconPlus />
+              </Plus>
+              <Score>{up}</Score>
+              <Minus onClick={() => setUp(prevUp => prevUp - 1)}>
+                <IconMinus />
+              </Minus>
+            </ScoreWrapper>
             {you ? (
-              <ActionButtons>
+              <ActionButtons editIsActive={edit}>
                 <Delete onClick={() => setShowModal({ commentId: id, showModal: true })}>
                   <img src="assets/icon-delete.svg" alt="delete icon" width="10px" height="11px" />
                   Delete
@@ -161,6 +147,15 @@ export default function Comment({
                 Reply
               </Reply>
             )}
+          </ScoreAndReply>
+          <Content>
+            <UserInfo>
+              <Image src={user.image.webp} alt="userimage in circle" width="35px" height="35px" />
+              <Username>{user.username}</Username>
+              {you && <YouLabel>you</YouLabel>}
+              <UserCreatedAt>{createdAt}</UserCreatedAt>
+            </UserInfo>
+
             {edit ? (
               <>
                 <TextContent
@@ -169,6 +164,7 @@ export default function Comment({
                   defaultValue={content}
                 />
                 <UpdateButton onClick={() => editComment(id)}>Update</UpdateButton>
+                <CancelButton onClick={() => setEdit(false)}>Cancel</CancelButton>
               </>
             ) : (
               <UserContent>{content}</UserContent>
@@ -186,7 +182,7 @@ export default function Comment({
             height="45px"
           />
           <TextContent autoFocus ref={textareaRef} />
-          <Button onClick={() => replyComment()}>Reply</Button>
+          <Button onClick={() => replyComment(comments, currentUser)}>Reply</Button>
         </WrapperResponding>
       </ContainerAddReply>
       )}
@@ -194,6 +190,7 @@ export default function Comment({
         <CommentReply
           comments={comments}
           commentsReplies={commentReplies}
+          currentUser={currentUser}
           setCommentsReplies={setCommentReplies!}
           content={reply.content}
           createdAt={reply.createdAt}
@@ -204,6 +201,7 @@ export default function Comment({
           user={reply.user}
           key={reply.id + Math.random() * 1000}
           you={reply.you}
+          setIsCommentReply={setIsCommentReply}
         />
       ))}
     </FullContainer>
