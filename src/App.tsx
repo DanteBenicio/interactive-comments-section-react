@@ -8,6 +8,8 @@ import Section from './components/Section';
 import { IComment } from './types/comment';
 import { CurrentUserType } from './types/currentUser';
 import { IShowModal } from './types/modal';
+import { AppContext } from './context';
+import Loading from './components/Loading';
 
 export default function App() {
   const { comments, setComments } = useContext(AppContext);
