@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
 import axios from 'axios';
-import React, { useEffect, useMemo, useState } from 'react';
+import {
+  useEffect, useContext, useState, useCallback,
+} from 'react';
 import Comment from './components/Comment';
 import CurrentUser from './components/CurrentUser';
 import Modal from './components/Modal';
