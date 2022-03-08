@@ -7,9 +7,3 @@ export type CurrentUserType = {
   },
   username: string
 }
-
-export type CurrentUserProps = {
-  replyingTo?: string
-  comments: IComment[]
-  setComments: (comments: IComment[]) => void
-}
