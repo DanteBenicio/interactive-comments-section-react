@@ -10,7 +10,7 @@ import { CurrentUserType } from './types/currentUser';
 import { IShowModal } from './types/modal';
 
 export default function App() {
-  const [comments, setComments] = useState<IComment[] | []>([]);
+  const { comments, setComments } = useContext(AppContext);
   const [showModal, setShowModal] = useState<IShowModal>();
   const [currentUser, setCurrentUser] = useState<CurrentUserType>();
   const [isCommentReply, setIsCommentReply] = useState<boolean>(false);
