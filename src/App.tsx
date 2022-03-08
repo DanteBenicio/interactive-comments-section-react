@@ -72,15 +72,16 @@ export default function App() {
               user={comment.user}
               replies={comment.replies}
               you={comment.you}
-              setComments={setComments}
-              comments={comments}
               showModal={showModal!}
               setShowModal={setShowModal}
               currentUser={currentUser!}
               setIsCommentReply={setIsCommentReply}
             />
           ))}
-          <CurrentUser />
+          <CurrentUser
+            setComments={setComments}
+            comments={comments}
+          />
         </>
       ) : (
         <p>Loading...</p>
