@@ -79,7 +79,17 @@ export default function Comment({
       you: true,
     };
 
-    let commentToBeAnswered = comments.find(comment => comment.id === id);
+    const newCommentReply = new CommentUser(
+      commentsTotalLength + 1,
+      textareaRef.current?.value!,
+      '1 day',
+      user.username,
+      0,
+      userCommentReply,
+      true,
+    );
+
+    const commentToBeAnswered = allComments.find(comment => comment.id === id);
 
     commentToBeAnswered?.replies?.push(newCommentReply);
 
