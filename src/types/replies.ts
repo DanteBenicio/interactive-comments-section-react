@@ -11,4 +11,6 @@ export interface CommentReplyProps extends RepliesType {
   comments: IComment[]
   commentsReplies: RepliesType[]
   setCommentsReplies: Dispatch<SetStateAction<RepliesType[]>>
+  setIsCommentReply: (isCommentReply: boolean) => void
+  currentUser: CurrentUserType
 }
