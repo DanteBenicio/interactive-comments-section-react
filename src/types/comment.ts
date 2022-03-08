@@ -16,13 +16,7 @@ export interface IComment {
   createdAt: string
   you?: boolean
   score: number
-  user: {
-    image: {
-      png: string
-      webp: string
-    },
-    username: string
-  }
+  user: User
   replies?: RepliesType[]
 }
 
@@ -31,8 +25,8 @@ export type CommentProps = {
   content: string
   createdAt: string
   you?: boolean
-  comments: IComment[]
-  setComments: (comments: IComment[]) => void
+  showModal: IShowModal
+  setIsCommentReply: (isCommentReply: boolean) => void
   setShowModal: (showModal: IShowModal) => void
   currentUser: CurrentUserType
   score: number
