@@ -36,8 +36,8 @@ export default function App() {
     };
   }, []);
 
-  async function deleteComment(commentId: number) {
-    const commentRemoved = comments.filter(comment => comment.id !== commentId);
+  const deleteComment = useCallback(async (commentId: number, allComments: IComment[]) => {
+    const commentRemoved = allComments.filter(comment => comment.id !== commentId);
 
     try {
       const response = await axios.delete(`http://localhost:3001/comments/${commentId}`);
