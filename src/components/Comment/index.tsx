@@ -53,8 +53,9 @@ export default function Comment({
     });
   }
 
-  async function replyComment() {
-    const commentsTotalLength = comments?.map(comment => {
+  // eslint-disable-next-line max-len
+  const replyComment = useCallback(async (allComments: IComment[], currentUserParam: CurrentUserType) => {
+    const commentsTotalLength = allComments?.map(comment => {
       if (comment.replies?.length) {
         return [comment, ...comment.replies];
       }
