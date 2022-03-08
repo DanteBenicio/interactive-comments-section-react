@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+export type editIsActiveType = {
+  editIsActive: boolean
+}
 
 export const FullContainerReply = styled.div`
-  padding: 1.6rem 0 1.6rem 6.4rem;
+  padding: 1.6rem 0 1.6rem 8%;
 `;
 
 export const Container = styled.article`
@@ -9,25 +13,12 @@ export const Container = styled.article`
 
   padding: 1.5rem;
   max-width: 51rem;
-  min-height: 16rem;
+  min-height: 11rem;
 
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.white};
 `;
-
-// export const ContainerAddReply = styled.article`
-// font-size: 1.6rem;
-
-// padding: 1.5rem;
-// max-width: 51rem;
-// min-height: auto;
-// margin: 1.6rem 0 0;
-
-// border-radius: 0.8rem;
-
-// background-color: ${({ theme }) => theme.neutral.white};
-// `;
 
 export const Wrapper = styled.div`
   position: relative;
@@ -36,6 +27,9 @@ export const Wrapper = styled.div`
   align-items: center;
 
   gap: 1.6rem;
+  @media screen and (max-width: 540px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const ScoreWrapper = styled.div`
@@ -47,16 +41,32 @@ export const ScoreWrapper = styled.div`
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.veryLightGray};
+
+  @media screen and (max-width: 540px) {
+    flex-direction: row;
+  }
+`;
+
+export const ScoreAndActionButtons = styled.div`
+  display: block;
+
+
+  @media screen and (max-width: 540px) {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 export const Plus = styled.span`
   position: relative;
-  display: block;
+  display: grid;
+  place-items: center;
 
   width: 3rem;
   height: 3rem;
 
-  text-align: center;
   cursor: pointer;
 
   &:hover svg > path {
@@ -77,12 +87,12 @@ export const Score = styled.span`
 
 export const Minus = styled.span`
   position: relative;
-  display: block;
+  display: grid;
+  place-items: center;
 
   width: 3rem;
   height: 3rem;
 
-  text-align: center;
   cursor: pointer;
 
   &:hover svg > path {
@@ -91,7 +101,7 @@ export const Minus = styled.span`
 `;
 
 export const Image = styled.img`
-  width: 3.5rem;
+  aspect-ratio: attr(width) / attr(height);
 `;
 
 export const Content = styled.div`
@@ -109,7 +119,7 @@ export const UserInfo = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Reply = styled.span`
+export const Reply = styled('span')<editIsActiveType>`
   display: block;
   position: absolute;
 
@@ -132,9 +142,8 @@ export const Reply = styled.span`
 
   img {
     margin-right: 0.8rem;
-    height: 1.1rem;
+    aspect-ratio: attr(width) / attr(height);
   }
-
 `;
 
 export const Username = styled.span`
@@ -164,7 +173,12 @@ export const UserContent = styled.p`
   word-break: break-all;
 `;
 
-export const ActionButtons = styled.div`
+export const ReplyingTo = styled.span`
+  color: ${({ theme }) => theme.primary.moderateBlue};
+  font-weight: 500;
+`;
+
+export const ActionButtons = styled('div')<editIsActiveType>`
   position: absolute;
   right: 0;
   top: 0;
@@ -173,6 +187,14 @@ export const ActionButtons = styled.div`
   align-items: center;
   max-width: 120px;
   width: 100%;
+
+  @media screen and (max-width: 540px) {
+    ${({ editIsActive }) => (editIsActive ? css`
+      display: none;
+    ` : css`
+      position: static;
+    `)}
+  }
 `;
 
 export const Delete = styled.span`
@@ -192,7 +214,7 @@ export const Delete = styled.span`
 
   img {
     margin-right: 0.8rem;
-    height: 1.1rem;
+    aspect-ratio: attr(width) / attr(height);
   }
 `;
 
@@ -213,7 +235,7 @@ export const Edit = styled.span`
 
   img {
     margin-right: 0.8rem;
-    height: 1.1rem;
+    aspect-ratio: attr(width) / attr(height);
   }
 `;
 
@@ -265,4 +287,53 @@ export const UpdateButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.primary.lightGrayishBlue};
   }
+
+  @media screen and (max-width: 540px) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+`;
+
+export const CancelButton = styled.button`
+  display: none;
+  margin-left: auto;
+  height: 4rem;
+  padding: 0.8rem 1.6rem;
+
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  color: white;
+  background-color: ${({ theme }) => theme.neutral.grayishBlue};
+  border: none;
+  border-radius: 0.8rem;
+
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.primary.lightGrayishBlue};
+  }
+
+  @media screen and (max-width: 540px) {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 11.4rem;
+  }
+`;
+
+export const ContainerAddReply = styled.article`
+  font-size: 1.6rem;
+
+  padding: 1.5rem;
+  max-width: 51rem;
+  min-height: auto;
+  margin: 1.6rem 0 0;
+
+  border-radius: 0.8rem;
+
+  background-color: ${({ theme }) => theme.neutral.white};
 `;
