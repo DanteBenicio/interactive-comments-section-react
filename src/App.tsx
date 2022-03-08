@@ -84,7 +84,7 @@ export default function App() {
           />
         </>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </Section>
   );
