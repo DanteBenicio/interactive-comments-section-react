@@ -147,17 +147,17 @@ export default function Comment({
             {you ? (
               <ActionButtons>
                 <Delete onClick={() => setShowModal({ commentId: id, showModal: true })}>
-                  <img src="assets/icon-delete.svg" alt="delete icon" />
+                  <img src="assets/icon-delete.svg" alt="delete icon" width="10px" height="11px" />
                   Delete
                 </Delete>
                 <Edit onClick={() => setEdit(!edit)}>
-                  <img src="assets/icon-edit.svg" alt="edit icon" />
+                  <img src="assets/icon-edit.svg" alt="edit icon" width="11px" height="11px" />
                   {edit ? 'Cancel' : 'Edit'}
                 </Edit>
               </ActionButtons>
             ) : (
               <Reply onClick={() => setIsReply(true)}>
-                <img src="assets/icon-reply.svg" alt="reply icon" />
+                <img src="assets/icon-reply.svg" alt="reply icon" width="11.84px" height="11px" />
                 Reply
               </Reply>
             )}
@@ -179,7 +179,12 @@ export default function Comment({
       {isReply && (
       <ContainerAddReply>
         <WrapperResponding>
-          <UserAvatarIsResponding src={currentUser.image.png} />
+          <UserAvatarIsResponding
+            src={currentUser.image.webp}
+            alt="userimage that is responding"
+            width="45px"
+            height="45px"
+          />
           <TextContent autoFocus ref={textareaRef} />
           <Button onClick={() => replyComment()}>Reply</Button>
         </WrapperResponding>
