@@ -63,20 +63,12 @@ export default function Comment({
       return comment;
     }).flat().length;
 
-    const newCommentReply: RepliesType = {
-      id: commentsTotalLength! + 1,
-      content: textareaRef.current?.value!,
-      createdAt: '1 day',
-      replyingTo: user.username,
-      score: 0,
-      user: {
-        image: {
-          png: currentUser.image.png,
-          webp: currentUser.image.webp,
-        },
-        username: currentUser.username,
+    const userCommentReply: User = {
+      image: {
+        png: currentUserParam.image.png,
+        webp: currentUserParam.image.webp,
       },
-      you: true,
+      username: currentUserParam.username,
     };
 
     const newCommentReply = new CommentUser(
