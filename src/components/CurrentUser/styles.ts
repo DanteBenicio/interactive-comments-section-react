@@ -5,10 +5,11 @@ export const WrapperResponding = styled.div`
   justify-content: space-between;
   gap: 1.6rem;
   align-items: center;
+  width: 100%;
 `;
 
 export const UserAvatarIsResponding = styled.img`
-  width: 4.5rem;
+  aspect-ratio: attr(width) / attr(height);
 `;
 
 export const TextContent = styled.textarea`

@@ -1,19 +1,20 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-no-useless-fragment */
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  memo, useCallback, useContext, useEffect, useRef, useState,
+} from 'react';
 import { Container } from '../Comment/styles';
 import {
   Button, TextContent, UserAvatarIsResponding, WrapperResponding,
 } from './styles';
-import { CurrentUserProps, CurrentUserType } from '../../types/currentUser';
+import { CurrentUserType } from '../../types/currentUser';
 import { IComment } from '../../types/comment';
+import { AppContext } from '../../context';
 
-export default function CurrentUser({
-  replyingTo,
-  setComments, comments,
-}: CurrentUserProps) {
-  const [currentUser, setCurrentUser] = useState<CurrentUserType | undefined>(undefined);
+export default function CurrenUser() {
+  const { comments, setComments } = useContext(AppContext);
+  const [currentUser, setCurrentUser] = useState<CurrentUserType>();
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
@@ -29,12 +30,15 @@ export default function CurrentUser({
     })();
   }, []);
 
-  async function sendComment() {
+  const sendComment = useCallback(async (
+    allComments: IComment[],
+    currentUserParam: CurrentUserType,
+  ) => {
     if (!textareaRef.current?.value) {
       return;
     }
 
-    const commentsTotalLength = comments?.map(comment => {
+    const commentsTotalLength = allComments?.map(comment => {
       if (comment.replies?.length) {
         return [comment, ...comment.replies];
       }
@@ -50,10 +54,10 @@ export default function CurrentUser({
       score: 0,
       user: {
         image: {
-          png: currentUser?.image.png!,
-          webp: currentUser?.image.webp!,
+          png: currentUserParam?.image.png!,
+          webp: currentUserParam?.image.webp!,
         },
-        username: currentUser?.username!,
+        username: currentUserParam?.username!,
       },
       replies: [],
     };
@@ -61,39 +65,26 @@ export default function CurrentUser({
     try {
       const response = await axios.post('http://localhost:3001/comments', commentData);
       const { status } = response;
-      console.log(status);
 
       if (status === 201) {
         if (textareaRef.current) {
           textareaRef.current.value = '';
         }
 
-        setComments([...comments, commentData]);
+        setComments(state => [...state, commentData]);
       }
     } catch (error) {
       console.error(error);
     }
-  }
+  }, [setComments]);
 
   return (
-    <>
-      {replyingTo ? (
-        <Container>
-          <WrapperResponding>
-            <UserAvatarIsResponding src={currentUser?.image.png} />
-            <TextContent wrap="wrap" autoFocus ref={textareaRef} value={`@${replyingTo}`} />
-            <Button>Reply</Button>
-          </WrapperResponding>
-        </Container>
-      ) : (
-        <Container>
-          <WrapperResponding>
-            <UserAvatarIsResponding src={currentUser?.image.png} />
-            <TextContent wrap="wrap" autoFocus ref={textareaRef} placeholder="Add a comment" />
-            <Button onClick={sendComment}>Send</Button>
-          </WrapperResponding>
-        </Container>
-      )}
-    </>
+    <Container>
+      <WrapperResponding>
+        <UserAvatarIsResponding src={currentUser?.image.webp} alt="userimage that is responding" width="45px" height="45px" />
+        <TextContent wrap="wrap" autoFocus ref={textareaRef} placeholder="Add a comment" />
+        <Button onClick={() => sendComment(comments, currentUser!)}>Send</Button>
+      </WrapperResponding>
+    </Container>
   );
 }
