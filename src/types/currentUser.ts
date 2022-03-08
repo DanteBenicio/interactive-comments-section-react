@@ -1,5 +1,3 @@
-import { IComment } from './comment';
-
 export type CurrentUserType = {
   image: {
     png: string
