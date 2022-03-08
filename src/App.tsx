@@ -23,7 +23,8 @@ export default function App() {
     (async () => {
       try {
         const response = await axios.get('http://localhost:3001/comments');
-        const { data } = response;
+        const { data, headers, config } = response;
+        console.log(headers, config);
 
         const response2 = await axios.get('http://localhost:3001/currentUser');
         const data2 = response2.data;
@@ -54,7 +55,7 @@ export default function App() {
     } catch (error) {
       console.error(error);
     }
-  }
+  }, [setComments]);
 
   return (
     <Section>
@@ -82,10 +83,7 @@ export default function App() {
               setIsCommentReply={setIsCommentReply}
             />
           ))}
-          <CurrentUser
-            setComments={setComments}
-            comments={comments}
-          />
+          <CurrentUser />
         </>
       ) : (
         <Loading />
