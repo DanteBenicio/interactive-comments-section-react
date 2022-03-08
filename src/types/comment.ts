@@ -2,6 +2,14 @@ import { CurrentUserType } from './currentUser';
 import { IShowModal } from './modal';
 import { RepliesType } from './replies';
 
+export type User = {
+  image: {
+    png: string
+    webp: string
+  },
+  username: string
+}
+
 export interface IComment {
   id: number
   content: string
