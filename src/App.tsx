@@ -50,7 +50,7 @@ export default function App() {
     } catch (error) {
       console.error(error);
     }
-  }, [setComments]);
+  }
 
   return (
     <Section>
@@ -80,10 +80,7 @@ export default function App() {
               setIsCommentReply={setIsCommentReply}
             />
           ))}
-          <CurrentUser
-            setComments={setComments}
-            comments={comments}
-          />
+          <CurrentUser />
         </>
       ) : (
         <p>Loading...</p>
