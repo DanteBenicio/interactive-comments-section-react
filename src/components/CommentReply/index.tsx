@@ -17,6 +17,7 @@ import { AppContext } from '../../context';
 import { IComment, User } from '../../types/comment';
 import { Button, UserAvatarIsResponding, WrapperResponding } from '../CurrentUser/styles.js';
 import { CurrentUserType } from '../../types/currentUser';
+import { CommentAnswer } from '../../model/CommentAnswer';
 
 export default function CommentReply({
   content, createdAt, id, replyingTo, score, user, you, setShowModal,
