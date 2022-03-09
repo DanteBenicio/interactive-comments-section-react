@@ -1,8 +1,6 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable react/jsx-no-useless-fragment */
 import axios from 'axios';
-import React, {
-  memo, useCallback, useContext, useEffect, useRef, useState,
+import {
+  useCallback, useContext, useEffect, useRef, useState,
 } from 'react';
 import { Container } from '../Comment/styles';
 import {
