@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import {
   useCallback, useContext, useRef, useState,
 } from 'react';
