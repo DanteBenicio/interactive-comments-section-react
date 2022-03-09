@@ -1,7 +1,7 @@
 import { User } from '../types/comment';
 import { RepliesType } from '../types/replies';
 
-export class CommentUser implements RepliesType {
+export class CommentUser implements IComment {
   id: number;
 
   content: string;
