@@ -9,8 +9,9 @@ import {
   Button, TextContent, UserAvatarIsResponding, WrapperResponding,
 } from './styles';
 import { CurrentUserType } from '../../types/currentUser';
-import { IComment } from '../../types/comment';
+import { IComment, User } from '../../types/comment';
 import { AppContext } from '../../context';
+import { CommentUser } from '../../model/CommentUser';
 
 export default function CurrenUser() {
   const { comments, setComments } = useContext(AppContext);
