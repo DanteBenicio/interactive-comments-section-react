@@ -67,7 +67,6 @@ export default function Comment({
       date,
       0,
       user.username,
-      0,
       userCommentReply,
       true,
     );
