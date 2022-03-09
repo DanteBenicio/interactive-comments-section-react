@@ -88,15 +88,17 @@ export default function CommentReply({
       username: currentUserParam.username,
     };
 
-    const newCommentReply: RepliesType = {
-      id: commentsTotalLength! + 1,
-      content: textareaRef.current?.value!,
-      createdAt: '1 day',
-      replyingTo: user.username,
-      score: 0,
-      user: userCommentReply,
-      you: true,
-    };
+    const date = new Intl.DateTimeFormat('en-US').format(new Date());
+
+    const newCommentReply = new CommentAnswer(
+      commentsTotalLength + 1,
+      textareaRef.current?.value!,
+      date,
+      0,
+      user.username,
+      userCommentReply,
+      true,
+    );
 
     const commentRoot = getRootComment(allComments, commentId);
 
