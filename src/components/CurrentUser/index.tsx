@@ -46,21 +46,25 @@ export default function CurrenUser() {
       return comment;
     }).flat().length;
 
-    const commentData: IComment = {
-      id: commentsTotalLength + 1,
-      you: true,
-      content: textareaRef.current?.value!,
-      createdAt: '1 week',
-      score: 0,
-      user: {
-        image: {
-          png: currentUserParam?.image.png!,
-          webp: currentUserParam?.image.webp!,
-        },
-        username: currentUserParam?.username!,
+    const date = new Intl.DateTimeFormat('en-US').format(new Date());
+
+    const user: User = {
+      image: {
+        png: currentUserParam?.image.png!,
+        webp: currentUserParam?.image.webp!,
       },
-      replies: [],
+      username: currentUserParam?.username!,
     };
+
+    const comment = new CommentUser(
+      commentsTotalLength + 1,
+      textareaRef.current?.value!,
+      date,
+      0,
+      user,
+      true,
+      [],
+    );
 
     try {
       const response = await axios.post('http://localhost:3001/comments', commentData);
