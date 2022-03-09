@@ -132,7 +132,11 @@ export default function Comment({
             </ScoreWrapper>
             {you ? (
               <ActionButtons editIsActive={edit}>
-                <Delete onClick={() => setShowModal({ commentId: id, showModal: true })}>
+                <Delete onClick={() => {
+                  setIsCommentReply(false);
+                  setShowModal({ commentId: id, showModal: true });
+                }}
+                >
                   <img src="assets/icon-delete.svg" alt="delete icon" width="10px" height="11px" />
                   Delete
                 </Delete>
