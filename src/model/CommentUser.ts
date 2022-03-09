@@ -16,6 +16,8 @@ export class CommentUser implements RepliesType {
 
   you: boolean;
 
+  replies?: RepliesType[];
+
   constructor(
     id: number,
     content: string,
@@ -24,6 +26,7 @@ export class CommentUser implements RepliesType {
     score: number,
     user: User,
     you: boolean,
+    replies?: RepliesType[],
   ) {
     this.id = id;
     this.content = content;
