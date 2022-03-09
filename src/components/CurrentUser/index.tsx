@@ -67,7 +67,7 @@ export default function CurrenUser() {
     );
 
     try {
-      const response = await axios.post('http://localhost:3001/comments', commentData);
+      const response = await axios.post('http://localhost:3001/comments', comment);
       const { status } = response;
 
       if (status === 201) {
@@ -75,7 +75,7 @@ export default function CurrenUser() {
           textareaRef.current.value = '';
         }
 
-        setComments(state => [...state, commentData]);
+        setComments(state => [...state, comment]);
       }
     } catch (error) {
       console.error(error);
