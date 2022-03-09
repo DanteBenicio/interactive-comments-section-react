@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import axios from 'axios';
 import {
   useEffect, useContext, useState, useCallback,
@@ -23,8 +22,7 @@ export default function App() {
     (async () => {
       try {
         const response = await axios.get('http://localhost:3001/comments');
-        const { data, headers, config } = response;
-        console.log(headers, config);
+        const { data } = response;
 
         const response2 = await axios.get('http://localhost:3001/currentUser');
         const data2 = response2.data;
