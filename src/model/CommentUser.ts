@@ -31,5 +31,6 @@ export class CommentUser implements RepliesType {
     this.score = score;
     this.user = user;
     this.you = you;
+    this.replies = replies;
   }
 }
