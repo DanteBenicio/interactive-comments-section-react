@@ -1,7 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
-/* eslint-disable react/jsx-no-bind */
 import axios from 'axios';
 import {
   useContext, useEffect, useRef, useState, useCallback,
