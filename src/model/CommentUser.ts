@@ -1,4 +1,4 @@
-import { User } from '../types/comment';
+import { IComment, User } from '../types/comment';
 import { RepliesType } from '../types/replies';
 
 export class CommentUser implements IComment {
