@@ -23,7 +23,7 @@ import {
   ScoreWrapper, TextContent, UpdateButton, UserContent, UserCreatedAt,
   UserInfo, Username, Wrapper, YouLabel,
 } from './styles';
-import { CommentUser } from '../../model/CommentUser';
+import { CommentAnswer } from '../../model/CommentAnswer';
 
 export default function Comment({
   user, createdAt, content, score, replies,
@@ -63,10 +63,13 @@ export default function Comment({
       username: currentUserParam.username,
     };
 
-    const newCommentReply = new CommentUser(
+    const date = new Intl.DateTimeFormat('en-US').format(new Date());
+
+    const newCommentReply = new CommentAnswer(
       commentsTotalLength + 1,
       textareaRef.current?.value!,
-      '1 day',
+      date,
+      0,
       user.username,
       0,
       userCommentReply,
