@@ -21,14 +21,14 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get('http://localhost:3001/comments');
+        const response = await axios.get('https://api-rest-comments.herokuapp.com/comments');
         const { data } = response;
 
-        const response2 = await axios.get('http://localhost:3001/currentUser');
+        const response2 = await axios.get('https://api-rest-comments.herokuapp.com/currentUser');
         const data2 = response2.data;
 
         setComments(data);
-        setCurrentUser(data2);
+        setCurrentUser(data2.currentUser);
       } catch (error) {
         console.error(error);
       }
@@ -43,7 +43,7 @@ export default function App() {
     const commentRemoved = allComments.filter(comment => comment.id !== commentId);
 
     try {
-      const response = await axios.delete(`http://localhost:3001/comments/${commentId}`);
+      const response = await axios.delete(`https://api-rest-comments.herokuapp.com/comments/${commentId}`);
       const { status } = response;
 
       if (status === 200) {
