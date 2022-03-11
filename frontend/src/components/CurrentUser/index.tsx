@@ -22,7 +22,7 @@ export default function CurrenUser() {
         const response = await axios.get('http://localhost:3001/currentUser');
         const { data } = response;
 
-        setCurrentUser(data);
+        setCurrentUser(data.currentUser);
       } catch (error) {
         console.error(error);
       }
