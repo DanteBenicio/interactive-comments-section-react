@@ -52,5 +52,6 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'arrow-parens': 'off',
+    'no-nested-ternary': 'off',
   },
 };
