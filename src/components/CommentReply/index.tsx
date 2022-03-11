@@ -40,7 +40,7 @@ export default function CommentReply({
     })!;
 
     try {
-      const response = await axios.put(`http://localhost:3001/comments/${commentRoot?.id}`, { ...commentRoot, replies: newCommentReply });
+      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot?.id}`, { ...commentRoot, replies: newCommentReply });
       const { status } = response;
 
       if (status === 200) {
@@ -58,7 +58,7 @@ export default function CommentReply({
     const commentRoot = getRootComment(comments, commentId);
 
     try {
-      const response = await axios.put(`http://localhost:3001/comments/${commentRoot?.id}`, { ...commentRoot, replies: commentReplyRemoved });
+      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot?.id}`, { ...commentRoot, replies: commentReplyRemoved });
       const { status } = response;
 
       if (status === 200) {
@@ -105,10 +105,8 @@ export default function CommentReply({
     commentRoot?.replies?.push(newCommentReply);
 
     try {
-      const response = await axios.put(`http://localhost:3001/comments/${commentRoot.id}`, commentRoot);
+      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot.id}`, commentRoot);
       const { status } = response;
-
-      console.log(status);
 
       if (status === 200) {
         setCommentsReplies(prevCommentReplies => [...prevCommentReplies!, newCommentReply]);

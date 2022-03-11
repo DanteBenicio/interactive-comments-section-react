@@ -34,7 +34,7 @@ export default function Comment({
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get('http://localhost:3001/comments');
+      const response = await axios.get('https://api-rest-comments.herokuapp.com/comments');
       const { data } = response;
 
       setComments(data);
@@ -76,10 +76,8 @@ export default function Comment({
     commentToBeAnswered?.replies?.push(newCommentReply);
 
     try {
-      const response = await axios.put(`http://localhost:3001/comments/${id}`, commentToBeAnswered);
+      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${id}`, commentToBeAnswered);
       const { status } = response;
-
-      console.log(status);
 
       if (status === 200) {
         setCommentReplies(prevCommentReplies => [...prevCommentReplies!, newCommentReply]);
@@ -102,7 +100,7 @@ export default function Comment({
     try {
       const data = patchComment.find((comment) => comment.id === commentId);
 
-      const response = await axios.put(`http://localhost:3001/comments/${commentId}`, data);
+      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentId}`, data);
       const { status } = response;
 
       if (status === 200) {
