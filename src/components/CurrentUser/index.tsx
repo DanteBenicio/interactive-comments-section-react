@@ -19,10 +19,10 @@ export default function CurrenUser() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get('http://localhost:3001/currentUser');
+        const response = await axios.get('https://api-rest-comments.herokuapp.com/currentUser');
         const { data } = response;
 
-        setCurrentUser(data);
+        setCurrentUser(data.currentUser);
       } catch (error) {
         console.error(error);
       }
@@ -66,7 +66,7 @@ export default function CurrenUser() {
     );
 
     try {
-      const response = await axios.post('http://localhost:3001/comments', comment);
+      const response = await axios.post('https://api-rest-comments.herokuapp.com/comments', comment);
       const { status } = response;
 
       if (status === 201) {
