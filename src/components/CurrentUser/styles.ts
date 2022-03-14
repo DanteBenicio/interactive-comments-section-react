@@ -14,7 +14,8 @@ export const UserAvatarIsResponding = styled.img`
 
 export const TextContent = styled.textarea`
   flex: 1;
-  min-height: 2rem;
+  min-height: 2.5rem;
+  height: 7.0rem;
   padding: 0.8rem 1rem;
   font-size: 1.4rem;
 
