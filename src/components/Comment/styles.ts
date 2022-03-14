@@ -15,6 +15,14 @@ export const Container = styled.article`
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.white};
+
+  & + div {
+    margin-top: 0.8rem;
+
+    &::before {
+      top: 10%;
+    }
+  }
 `;
 
 export const ContainerAddReply = styled.article`
