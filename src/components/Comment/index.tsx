@@ -142,8 +142,8 @@ export default function Comment({
                 </Edit>
               </ActionButtons>
             ) : isReply ? (
-              <Reply onClick={() => setIsReply(false)}>
-                <img src="assets/icon-reply.svg" alt="reply icon" width="11.84px" height="11px" />
+              <Reply onClick={() => setIsReply(false)} style={{ color: 'hsl(358, 79%, 66%)' }}>
+                <img src="assets/icon-delete.svg" alt="reply icon" width="11.84px" height="11px" />
                 Cancel
               </Reply>
             ) : (
