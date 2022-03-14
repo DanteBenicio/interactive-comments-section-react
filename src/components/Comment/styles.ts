@@ -254,7 +254,6 @@ export const TextContent = styled.textarea`
   min-height: 3rem;
   width: 100%;
   padding: 0.8rem 1rem;
-  margin-bottom: 1.6rem;
   font-size: 1.4rem;
 
   border: 1px solid ${({ theme }) => theme.neutral.veryLightGray};
