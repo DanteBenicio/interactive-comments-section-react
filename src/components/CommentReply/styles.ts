@@ -5,7 +5,19 @@ export type editIsActiveType = {
 }
 
 export const FullContainerReply = styled.div`
-  padding: 1.6rem 0 1.6rem 8%;
+  padding: 1.6rem 0 0 calc(8% + 0.4rem);
+  position: relative;
+  overflow-y: hidden;
+
+  &::before {
+    content: '';
+    width: 3px;
+    height: 100%;
+    position: absolute;
+    left: 4%;
+    top: 0;
+    background-color: ${({ theme }) => theme.neutral.lightGray};
+  }
 `;
 
 export const Container = styled.article`
