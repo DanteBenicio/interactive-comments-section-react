@@ -268,6 +268,7 @@ export const TextContent = styled.textarea`
 
 export const UpdateButton = styled.button`
   display: block;
+  margin-top: 0.8rem;
   margin-left: auto;
   height: 4rem;
   padding: 0.8rem 1.6rem;
