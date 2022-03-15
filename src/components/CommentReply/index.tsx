@@ -23,7 +23,7 @@ export default function CommentReply({
   comments, commentsReplies, setCommentsReplies, setIsCommentReply, currentUser,
 }: CommentReplyProps) {
   const { getRootComment } = useContext(AppContext);
-  const [up, setUp] = useState<number>(score);
+  const [scores, setScores] = useState<number>(score);
   const [isReply, setIsReply] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -117,17 +117,67 @@ export default function CommentReply({
     }
   }, [user.username, setCommentsReplies, getRootComment]);
 
+  // eslint-disable-next-line max-len
+  const updateScore = useCallback(async (commentId: number, subtract: boolean, commentScore: number) => {
+    if (commentScore === 0 && subtract) {
+      return '';
+    }
+
+    const commentRoot = getRootComment(comments, commentId);
+
+    if (subtract) {
+      const commentToBeUpdated = commentRoot.replies?.map(reply => {
+        if (reply.id === commentId) {
+          return { ...reply, score: commentScore - 1 };
+        }
+        return reply;
+      });
+
+      try {
+        const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot.id}`, { ...commentRoot, replies: commentToBeUpdated });
+        const { status } = response;
+        if (status === 200) {
+          setScores(prevScore => prevScore - 1);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+      return '';
+    }
+
+    const commentToBeUpdated = commentRoot.replies?.map(reply => {
+      if (reply.id === commentId) {
+        return { ...reply, score: commentScore + 1 };
+      }
+      return reply;
+    });
+
+    try {
+      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot.id}`, { ...commentRoot, replies: commentToBeUpdated });
+      const { status } = response;
+
+      if (status === 200) {
+        setScores(prevScore => prevScore + 1);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    return '';
+  }, [comments, getRootComment]);
+
   return (
     <FullContainerReply>
       <Container>
         <Wrapper>
           <ScoreAndActionButtons>
             <ScoreWrapper>
-              <Plus onClick={() => setUp(prevUp => prevUp + 1)}>
+              <Plus onClick={() => updateScore(id, false, scores)}>
                 <IconPlus />
               </Plus>
-              <Score>{up}</Score>
-              <Minus onClick={() => setUp(prevUp => prevUp - 1)}>
+              <Score>{scores}</Score>
+              <Minus onClick={() => updateScore(id, true, scores)}>
                 <IconMinus />
               </Minus>
             </ScoreWrapper>

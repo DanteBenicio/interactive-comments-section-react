@@ -27,7 +27,7 @@ export default function Comment({
 }: CommentProps) {
   const { comments, setComments } = useContext(AppContext);
   const [commentReplies, setCommentReplies] = useState<RepliesType[]>(replies!);
-  const [up, setUp] = useState<number>(score);
+  const [scores, setScores] = useState<number>(score);
   const [edit, setEdit] = useState<boolean>(false);
   const [isReply, setIsReply] = useState<boolean>(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -112,17 +112,51 @@ export default function Comment({
     }
   }
 
+  // eslint-disable-next-line max-len
+  const updateScore = useCallback(async (commentId: number, subtract: boolean, commentScore: number) => {
+    if (commentScore === 0 && subtract) {
+      return '';
+    }
+
+    const commentToBeUpdated = comments.find(comment => comment.id === commentId);
+
+    if (subtract) {
+      try {
+        const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentId}`, { ...commentToBeUpdated, score: commentScore - 1 });
+        const { status } = response;
+
+        if (status === 200) {
+          setScores(prevScore => prevScore - 1);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      return '';
+    }
+    try {
+      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentId}`, { ...commentToBeUpdated, score: commentScore + 1 });
+      const { status } = response;
+
+      if (status === 200) {
+        setScores(prevScore => prevScore + 1);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    return '';
+  }, [comments]);
+
   return (
     <FullContainer>
       <Container data-comment={id}>
         <Wrapper>
           <ScoreAndReply>
             <ScoreWrapper>
-              <Plus onClick={() => setUp(prevUp => prevUp + 1)}>
+              <Plus onClick={() => updateScore(id, false, scores)}>
                 <IconPlus />
               </Plus>
-              <Score>{up}</Score>
-              <Minus onClick={() => setUp(prevUp => prevUp - 1)}>
+              <Score>{scores}</Score>
+              <Minus onClick={() => updateScore(id, true, scores)}>
                 <IconMinus />
               </Minus>
             </ScoreWrapper>
