@@ -25,7 +25,7 @@ export const ModalContent = styled.div`
   position: relative;
   max-width: 400px;
   padding: 3.2rem;
-  margin-right: 1.6rem;
+  margin: 0 1.6rem;
   background-color: white;
   border-radius: 0.8rem;
 `;
