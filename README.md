@@ -2,10 +2,9 @@
 
 <h1 align="center">Interactive Comments Section</h1>
 
-<h1><img src="./.github/image-3.png"/></h1>
-<h1><img src="./.github/image-2.png"/></h1>
 <h1><img src="./.github/image-1.png"/></h1>
-<h1><img src="./.github/image-4.png"/></h1>
+<h1><img src="./.github/video-desktop.gif"></h1>
+<h1 align="center"><img src="./.github/video-mobile.gif"></h1>
 
 > Status: Production ✅
 
