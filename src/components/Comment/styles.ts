@@ -15,6 +15,7 @@ export const Container = styled.article`
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.white};
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
 
   & + div {
     margin-top: 0.8rem;
@@ -36,6 +37,7 @@ export const ContainerAddReply = styled.article`
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.white};
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.150);
 `;
 
 export const Wrapper = styled.div`

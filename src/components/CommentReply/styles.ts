@@ -7,7 +7,6 @@ export type editIsActiveType = {
 export const FullContainerReply = styled.div`
   padding: 1.6rem 0 0 calc(8% + 0.4rem);
   position: relative;
-  overflow-y: hidden;
 
   &::before {
     content: '';
