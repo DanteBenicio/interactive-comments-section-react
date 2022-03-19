@@ -29,6 +29,7 @@ export const Container = styled.article`
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.white};
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
 `;
 
 export const Wrapper = styled.div`
