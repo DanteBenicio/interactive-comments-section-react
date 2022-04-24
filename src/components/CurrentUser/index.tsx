@@ -1,7 +1,8 @@
-import axios from 'axios';
 import {
   useCallback, useContext, useEffect, useRef, useState,
 } from 'react';
+import moment, { isMoment } from 'moment';
+import { API } from '../../api/axios';
 import { Container } from '../Comment/styles';
 import {
   Button, TextContent, UserAvatarIsResponding, WrapperResponding,
@@ -19,7 +20,7 @@ export default function CurrenUser() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get('https://api-rest-comments.herokuapp.com/currentUser');
+        const response = await API.get('/currentUser');
         const { data } = response;
 
         setCurrentUser(data.currentUser);
@@ -66,7 +67,7 @@ export default function CurrenUser() {
     );
 
     try {
-      const response = await axios.post('https://api-rest-comments.herokuapp.com/comments', comment);
+      const response = await API.post('/comments', comment);
       const { status } = response;
 
       if (status === 201) {

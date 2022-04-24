@@ -1,7 +1,7 @@
-import axios from 'axios';
 import {
   useContext, useEffect, useRef, useState, useCallback,
 } from 'react';
+import { API } from '../../api/axios';
 import { AppContext } from '../../context';
 import IconMinus from '../../svgs/icon-minus.jsx';
 import IconPlus from '../../svgs/icon-plus.jsx';
@@ -34,7 +34,7 @@ export default function Comment({
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get('https://api-rest-comments.herokuapp.com/comments');
+      const response = await API.get('/comments');
       const { data } = response;
 
       setComments(data);
@@ -76,7 +76,7 @@ export default function Comment({
     commentToBeAnswered?.replies?.push(newCommentReply);
 
     try {
-      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${id}`, commentToBeAnswered);
+      const response = await API.put(`/comments/${id}`, commentToBeAnswered);
       const { status } = response;
 
       if (status === 200) {
@@ -100,7 +100,7 @@ export default function Comment({
     try {
       const data = patchComment.find((comment) => comment.id === commentId);
 
-      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentId}`, data);
+      const response = await API.put(`/comments/${commentId}`, data);
       const { status } = response;
 
       if (status === 200) {
@@ -122,7 +122,7 @@ export default function Comment({
 
     if (subtract) {
       try {
-        const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentId}`, { ...commentToBeUpdated, score: commentScore - 1 });
+        const response = await API.put(`/comments/${commentId}`, { ...commentToBeUpdated, score: commentScore - 1 });
         const { status } = response;
 
         if (status === 200) {
@@ -134,7 +134,7 @@ export default function Comment({
       return '';
     }
     try {
-      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentId}`, { ...commentToBeUpdated, score: commentScore + 1 });
+      const response = await API.put(`/comments/${commentId}`, { ...commentToBeUpdated, score: commentScore + 1 });
       const { status } = response;
 
       if (status === 200) {

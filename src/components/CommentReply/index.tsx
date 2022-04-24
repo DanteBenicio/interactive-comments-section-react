@@ -1,7 +1,7 @@
 import {
   useCallback, useContext, useRef, useState,
 } from 'react';
-import axios from 'axios';
+import { API } from '../../api/axios';
 import {
   ActionButtons, CancelButton, Container, ContainerAddReply, Content,
   Delete, Edit, FullContainerReply,
@@ -40,7 +40,7 @@ export default function CommentReply({
     })!;
 
     try {
-      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot?.id}`, { ...commentRoot, replies: newCommentReply });
+      const response = await API.put(`/comments/${commentRoot?.id}`, { ...commentRoot, replies: newCommentReply });
       const { status } = response;
 
       if (status === 200) {
@@ -58,7 +58,7 @@ export default function CommentReply({
     const commentRoot = getRootComment(comments, commentId);
 
     try {
-      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot?.id}`, { ...commentRoot, replies: commentReplyRemoved });
+      const response = await API.put(`/comments/${commentRoot?.id}`, { ...commentRoot, replies: commentReplyRemoved });
       const { status } = response;
 
       if (status === 200) {
@@ -105,7 +105,7 @@ export default function CommentReply({
     commentRoot?.replies?.push(newCommentReply);
 
     try {
-      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot.id}`, commentRoot);
+      const response = await API.put(`/comments/${commentRoot.id}`, commentRoot);
       const { status } = response;
 
       if (status === 200) {
@@ -134,7 +134,7 @@ export default function CommentReply({
       });
 
       try {
-        const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot.id}`, { ...commentRoot, replies: commentToBeUpdated });
+        const response = await API.put(`/comments/${commentRoot.id}`, { ...commentRoot, replies: commentToBeUpdated });
         const { status } = response;
         if (status === 200) {
           setScores(prevScore => prevScore - 1);
@@ -154,7 +154,7 @@ export default function CommentReply({
     });
 
     try {
-      const response = await axios.put(`https://api-rest-comments.herokuapp.com/comments/${commentRoot.id}`, { ...commentRoot, replies: commentToBeUpdated });
+      const response = await API.put(`/comments/${commentRoot.id}`, { ...commentRoot, replies: commentToBeUpdated });
       const { status } = response;
 
       if (status === 200) {
