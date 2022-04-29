@@ -82,7 +82,6 @@ export default function CommentReply({
 
     const userCommentReply: User = {
       image: {
-        png: currentUserParam.image.png,
         webp: currentUserParam.image.webp,
       },
       username: currentUserParam.username,
