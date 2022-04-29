@@ -1,7 +1,6 @@
 import {
   useCallback, useContext, useEffect, useRef, useState,
 } from 'react';
-import moment, { isMoment } from 'moment';
 import { API } from '../../api/axios';
 import { Container } from '../Comment/styles';
 import {
