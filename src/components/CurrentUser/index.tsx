@@ -49,6 +49,7 @@ export default function CurrenUser() {
 
     const user: User = {
       image: {
+        png: currentUserParam?.image.png!,
         webp: currentUserParam?.image.webp!,
       },
       username: currentUserParam?.username!,
