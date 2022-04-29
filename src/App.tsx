@@ -21,14 +21,13 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await API.get('/comments');
-        const { data } = response;
+        const [currentUserData, commentsData] = await Promise.all([
+          API.get('/currentUser'),
+          API.get('/comments'),
+        ]);
 
-        const response2 = await API.get('/currentUser');
-        const data2 = response2.data;
-
-        setComments(data);
-        setCurrentUser(data2.currentUser);
+        setCurrentUser(currentUserData.data);
+        setComments(commentsData.data);
       } catch (error) {
         console.error(error);
       }
