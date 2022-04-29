@@ -4,7 +4,6 @@ import { RepliesType } from './replies';
 
 export type User = {
   image: {
-    png: string
     webp: string
   },
   username: string
@@ -32,7 +31,6 @@ export type CommentProps = {
   score: number
   user: {
     image: {
-      png: string
       webp: string
     },
     username: string
