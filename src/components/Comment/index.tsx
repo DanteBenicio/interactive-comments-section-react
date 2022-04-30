@@ -53,7 +53,6 @@ export default function Comment({
 
     const userCommentReply: User = {
       image: {
-        png: currentUserParam.image.png,
         webp: currentUserParam.image.webp,
       },
       username: currentUserParam.username,
@@ -189,7 +188,7 @@ export default function Comment({
           </ScoreAndReply>
           <Content>
             <UserInfo>
-              <Image src={user.image.webp} alt="userimage in circle" width="35px" height="35px" />
+              <Image src={user.image?.webp} alt="userimage in circle" width="35px" height="35px" />
               <Username>{user.username}</Username>
               {you && <YouLabel>you</YouLabel>}
               <UserCreatedAt>{createdAt}</UserCreatedAt>
@@ -215,7 +214,7 @@ export default function Comment({
       <ContainerAddReply>
         <WrapperResponding>
           <UserAvatarIsResponding
-            src={currentUser.image.webp}
+            src={currentUser.image?.webp}
             alt="userimage that is responding"
             width="45px"
             height="45px"

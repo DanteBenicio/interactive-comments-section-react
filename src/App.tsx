@@ -1,6 +1,7 @@
 import {
   useEffect, useContext, useState, useCallback,
 } from 'react';
+import axios from 'axios';
 import { API } from './api/axios';
 import Comment from './components/Comment';
 import CurrentUser from './components/CurrentUser';
@@ -26,7 +27,7 @@ export default function App() {
           API.get('/comments'),
         ]);
 
-        setCurrentUser(currentUserData.data);
+        setCurrentUser(currentUserData.data.currentUser);
         setComments(commentsData.data);
       } catch (error) {
         console.error(error);

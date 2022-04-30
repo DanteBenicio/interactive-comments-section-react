@@ -210,7 +210,7 @@ export default function CommentReply({
           </ScoreAndActionButtons>
           <Content>
             <UserInfo>
-              <Image src={user.image.webp} alt="userimage in circle" width="35px" height="35px" />
+              <Image src={user.image?.webp} alt="userimage in circle" width="35px" height="35px" />
               <Username>{user.username}</Username>
               {you && <YouLabel>you</YouLabel>}
               <UserCreatedAt>{createdAt}</UserCreatedAt>
@@ -244,7 +244,7 @@ export default function CommentReply({
       {isReply && (
       <ContainerAddReply>
         <WrapperResponding>
-          <UserAvatarIsResponding src={currentUser.image.webp} alt="userimage that is responding" width="45px" height="45px" />
+          <UserAvatarIsResponding src={currentUser?.image.webp} alt="userimage that is responding" width="45px" height="45px" />
           <TextContent autoFocus ref={textareaRef} />
           <Button onClick={() => replyComment(comments, currentUser, id)}>Reply</Button>
         </WrapperResponding>
