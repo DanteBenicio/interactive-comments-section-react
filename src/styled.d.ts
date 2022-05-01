@@ -2,6 +2,7 @@ import 'styled-components'; // import styled-components module
 
 declare module 'styled-components' {
   export interface DefaultTheme { // override type definition DefaultTheme
+    title: 'light' | 'dark'
     primary: {
       moderateBlue: string
       softRed: string
