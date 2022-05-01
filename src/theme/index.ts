@@ -24,7 +24,7 @@ export const darkTheme = {
     paleRed: 'hsl(357, 100%, 86%)',
   },
   neutral: {
-    darkBlue: 'hsl(212, 24%, 26%)',
+    darkBlue: 'hsl(239, 57%, 85%)',
     grayishBlue: 'hsl(211, 10%, 45%)',
     lightGray: 'hsl(30, 12%, 10%)',
     veryLightGray: 'hsl(20, 14%, 9%)',
