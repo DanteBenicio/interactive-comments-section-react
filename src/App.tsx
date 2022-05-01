@@ -2,6 +2,7 @@ import {
   useEffect, useContext, useState, useCallback,
 } from 'react';
 import axios from 'axios';
+import { DefaultTheme } from 'styled-components';
 import { API } from './api/axios';
 import Comment from './components/Comment';
 import CurrentUser from './components/CurrentUser';
@@ -12,12 +13,15 @@ import { CurrentUserType } from './types/currentUser';
 import { IShowModal } from './types/modal';
 import { AppContext } from './context';
 import Loading from './components/Loading';
+import Navbar from './components/Navbar';
+import { lightTheme, darkTheme } from './theme';
 
 export default function App() {
   const { comments, setComments } = useContext(AppContext);
   const [showModal, setShowModal] = useState<IShowModal>();
   const [currentUser, setCurrentUser] = useState<CurrentUserType>();
   const [isCommentReply, setIsCommentReply] = useState<boolean>(false);
+  const [theme, setTheme] = useState<DefaultTheme>(lightTheme);
 
   useEffect(() => {
     (async () => {
@@ -63,6 +67,7 @@ export default function App() {
         deleteComment={deleteComment!}
         isCommentReply={isCommentReply}
       />
+      <Navbar />
       {comments.length ? (
         <>
           {comments.map((comment) => (

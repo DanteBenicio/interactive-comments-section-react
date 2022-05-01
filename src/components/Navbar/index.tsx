@@ -10,7 +10,15 @@ export default function Navbar() {
         <LogoWrapper>
           <Logo src="assets/favicon.png" alt="two comment ballons" />
         </LogoWrapper>
-        <Switch />
+        <Switch
+          onChange={() => {}}
+          checked
+          checkedIcon={false}
+          uncheckedIcon={false}
+          handleDiameter={20}
+          offColor="#e2e1e1"
+          onColor="#5457b6"
+        />
       </Wrapper>
     </Container>
   );

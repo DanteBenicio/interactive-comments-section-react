@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.header`
   max-width: 100vw;
   padding: 1rem 2.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.8rem;
 `;
 
 export const Wrapper = styled.nav`
