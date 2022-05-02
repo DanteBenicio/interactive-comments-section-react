@@ -270,6 +270,7 @@ export const TextContent = styled.textarea`
   border-radius: 0.4rem;
   color: ${({ theme }) => theme.neutral.darkBlue};
   outline: none;
+  background-color: ${({ theme }) => theme.neutral.veryLightGray};
 
   font-size: 1.6rem;
 
