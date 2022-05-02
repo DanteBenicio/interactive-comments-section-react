@@ -60,6 +60,8 @@ export default function App() {
   }, [setComments]);
 
   return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
     <Section>
       <Modal
         showModal={showModal!}
