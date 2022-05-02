@@ -72,6 +72,7 @@ export default function App() {
       <Navbar />
       {comments.length ? (
         <>
+            <Navbar toggleTheme={toggleTheme} />
           {comments.map((comment) => (
             <Comment
               key={comment.content}
