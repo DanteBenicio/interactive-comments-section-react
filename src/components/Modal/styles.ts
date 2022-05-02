@@ -12,7 +12,7 @@ export const ModalContainer = styled('div')<ModalContainerProps>`
     padding: 1.6rem;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.3);
     top: 0;
     left: 0;
     z-index: 999;
@@ -26,7 +26,7 @@ export const ModalContent = styled.div`
   max-width: 400px;
   padding: 3.2rem;
   margin: 0 1.6rem;
-  background-color: white;
+  background-color: ${({ theme }) => theme.neutral.white};
   border-radius: 0.8rem;
 `;
 
