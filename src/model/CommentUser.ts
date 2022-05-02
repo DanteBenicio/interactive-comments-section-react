@@ -6,7 +6,7 @@ export class CommentUser implements IComment {
 
   content: string;
 
-  createdAt: string;
+  createdAt: Date;
 
   score: number;
 
@@ -19,7 +19,7 @@ export class CommentUser implements IComment {
   constructor(
     id: number,
     content: string,
-    createdAt: string,
+    createdAt: Date,
     score: number,
     user: User,
     you: boolean,

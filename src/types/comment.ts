@@ -12,7 +12,7 @@ export type User = {
 export interface IComment {
   id: number
   content: string
-  createdAt: string
+  createdAt: Date
   you?: boolean
   score: number
   user: User
@@ -22,7 +22,7 @@ export interface IComment {
 export type CommentProps = {
   id: number
   content: string
-  createdAt: string
+  createdAt: Date
   you?: boolean
   showModal: IShowModal
   setIsCommentReply: (isCommentReply: boolean) => void

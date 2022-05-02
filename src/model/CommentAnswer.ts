@@ -6,7 +6,7 @@ export class CommentAnswer implements RepliesType {
 
   content: string;
 
-  createdAt: string;
+  createdAt: Date;
 
   score: number;
 
@@ -19,7 +19,7 @@ export class CommentAnswer implements RepliesType {
   constructor(
     id: number,
     content: string,
-    createdAt: string,
+    createdAt: Date,
     score: number,
     replyingTo: string,
     user: User,
