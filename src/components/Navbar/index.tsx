@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 import { NavbarProps } from '../../types/navbar';
 import {
