@@ -1,7 +1,6 @@
 import {
   useEffect, useContext, useState, useCallback,
 } from 'react';
-import axios from 'axios';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { API } from './api/axios';
 import Comment from './components/Comment';
