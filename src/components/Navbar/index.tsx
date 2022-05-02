@@ -6,7 +6,9 @@ import {
   Container, Logo, LogoWrapper, Wrapper,
 } from './styles';
 
-export default function Navbar() {
+export default function Navbar({ toggleTheme }: NavbarProps) {
+  const { title } = useContext(ThemeContext);
+
   return (
     <Container>
       <Wrapper>
