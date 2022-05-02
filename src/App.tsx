@@ -62,38 +62,38 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-    <Section>
-      <Modal
-        showModal={showModal!}
-        setShowModal={setShowModal}
-        deleteComment={deleteComment!}
-        isCommentReply={isCommentReply}
-      />
-      <Navbar />
-      {comments.length ? (
-        <>
+      <Section>
+        <Modal
+          showModal={showModal!}
+          setShowModal={setShowModal}
+          deleteComment={deleteComment!}
+          isCommentReply={isCommentReply}
+        />
+        {comments.length ? (
+          <>
             <Navbar toggleTheme={toggleTheme} />
-          {comments.map((comment) => (
-            <Comment
-              key={comment.content}
-              id={comment.id}
-              content={comment.content}
-              createdAt={comment.createdAt}
-              score={comment.score}
-              user={comment.user}
-              replies={comment.replies}
-              you={comment.you}
-              showModal={showModal!}
-              setShowModal={setShowModal}
-              currentUser={currentUser!}
-              setIsCommentReply={setIsCommentReply}
-            />
-          ))}
-          <CurrentUser />
-        </>
-      ) : (
-        <Loading />
-      )}
-    </Section>
+            {comments.map((comment) => (
+              <Comment
+                key={comment.content}
+                id={comment.id}
+                content={comment.content}
+                createdAt={comment.createdAt}
+                score={comment.score}
+                user={comment.user}
+                replies={comment.replies}
+                you={comment.you}
+                showModal={showModal!}
+                setShowModal={setShowModal}
+                currentUser={currentUser!}
+                setIsCommentReply={setIsCommentReply}
+              />
+            ))}
+            <CurrentUser />
+          </>
+        ) : (
+          <Loading />
+        )}
+      </Section>
+    </ThemeProvider>
   );
 }
