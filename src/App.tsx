@@ -15,6 +15,7 @@ import { AppContext } from './context';
 import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 import { lightTheme, darkTheme } from './theme';
+import GlobalStyle from './styles/global-styles';
 
 export default function App() {
   const { comments, setComments } = useContext(AppContext);
