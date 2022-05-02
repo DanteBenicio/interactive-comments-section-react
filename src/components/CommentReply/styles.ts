@@ -263,6 +263,8 @@ export const TextContent = styled.textarea`
   color: ${({ theme }) => theme.neutral.darkBlue};
   outline: none;
 
+  background-color: ${({ theme }) => theme.neutral.veryLightGray};
+
   font-size: 1.6rem;
 
   resize: none;
@@ -348,4 +350,5 @@ export const ContainerAddReply = styled.article`
   border-radius: 0.8rem;
 
   background-color: ${({ theme }) => theme.neutral.white};
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
 `;
