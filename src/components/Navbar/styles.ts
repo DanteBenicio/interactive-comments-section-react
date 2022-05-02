@@ -5,6 +5,7 @@ export const Container = styled.header`
   padding: 1rem 2.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   border-radius: 0.8rem;
+  background-color: ${({ theme }) => theme.neutral.white};
 `;
 
 export const Wrapper = styled.nav`
