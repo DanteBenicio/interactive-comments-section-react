@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const WrapperResponding = styled.div`
   display: flex;
@@ -13,47 +13,53 @@ export const UserAvatarIsResponding = styled.img`
 `;
 
 export const TextContent = styled.textarea`
-  flex: 1;
-  min-height: 2.5rem;
-  height: 7.0rem;
-  padding: 0.8rem 1rem;
-  font-size: 1.4rem;
+  ${({ theme }) => css`
+    flex: 1;
+    min-height: 2.5rem;
+    height: 7.0rem;
+    padding: 0.8rem 1rem;
+    font-size: 1.4rem;
 
-  border: 1px solid ${({ theme }) => theme.neutral.veryLightGray};
-  border-radius: 0.4rem;
-  color: ${({ theme }) => theme.neutral.darkBlue};
-  outline: none;
+    border: 1px solid ${theme.neutral.veryLightGray};
+    border-radius: 0.4rem;
+    color: ${theme.neutral.darkBlue};
+    outline: none;
 
-  font-size: 1.6rem;
+    background-color: ${theme.neutral.veryLightGray};
 
-  resize: none;
+    font-size: 1.6rem;
 
-  transition: border-color 0.2s ease;
+    resize: none;
 
-  &:focus {
-    border-color: ${({ theme }) => theme.primary.moderateBlue};
-  }
-  &:focus::placeholder {
-    color: transparent;
-  }
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: ${theme.primary.moderateBlue};
+    }
+    &:focus::placeholder {
+      color: transparent;
+    }
+  `}
 `;
 
 export const Button = styled.button`
-  height: 4rem;
-  padding: 0.8rem 1.6rem;
+  ${({ theme }) => css`
+    height: 4rem;
+    padding: 0.8rem 1.6rem;
 
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 500;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
 
-  color: white;
-  background-color: ${({ theme }) => theme.primary.moderateBlue};
-  border: none;
-  border-radius: 0.8rem;
+    color: white;
+    background-color: ${theme.primary.moderateBlue};
+    border: none;
+    border-radius: 0.8rem;
 
-  transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.primary.lightGrayishBlue};
-  }
+    &:hover {
+      background-color: ${theme.primary.lightGrayishBlue};
+    }
+  `}
 `;
