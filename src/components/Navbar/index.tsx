@@ -16,8 +16,8 @@ export default function Navbar({ toggleTheme }: NavbarProps) {
           <Logo src="assets/favicon.png" alt="two comment ballons" />
         </LogoWrapper>
         <Switch
-          onChange={() => {}}
-          checked
+          onChange={toggleTheme}
+          checked={title !== 'light'}
           checkedIcon={false}
           uncheckedIcon={false}
           handleDiameter={20}
