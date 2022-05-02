@@ -21,7 +21,14 @@ export default function App() {
   const [showModal, setShowModal] = useState<IShowModal>();
   const [currentUser, setCurrentUser] = useState<CurrentUserType>();
   const [isCommentReply, setIsCommentReply] = useState<boolean>(false);
-  const [theme, setTheme] = useState<DefaultTheme>(lightTheme);
+  const [theme, setTheme] = useState<DefaultTheme>(localStorage.getItem('theme') === 'light' ? lightTheme : darkTheme);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(prevState => {
+      localStorage.setItem('theme', prevState.title === 'light' ? 'dark' : 'light');
+      return prevState.title === 'light' ? darkTheme : lightTheme;
+    });
+  }, []);
 
   useEffect(() => {
     (async () => {
