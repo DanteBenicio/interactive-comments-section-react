@@ -1,7 +1,6 @@
 import {
   useCallback, useContext, useEffect, useRef, useState,
 } from 'react';
-import axios from 'axios';
 import { API } from '../../api/axios';
 import { Container } from '../Comment/styles';
 import {
@@ -46,7 +45,7 @@ export default function CurrenUser() {
       return comment;
     }).flat().length;
 
-    const date = new Intl.DateTimeFormat('en-US').format(new Date());
+    const date = new Date();
 
     const user: User = {
       image: {

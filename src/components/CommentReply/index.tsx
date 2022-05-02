@@ -1,6 +1,7 @@
 import {
   useCallback, useContext, useRef, useState,
 } from 'react';
+import moment from 'moment';
 import { API } from '../../api/axios';
 import {
   ActionButtons, CancelButton, Container, ContainerAddReply, Content,
@@ -87,7 +88,7 @@ export default function CommentReply({
       username: currentUserParam.username,
     };
 
-    const date = new Intl.DateTimeFormat('en-US').format(new Date());
+    const date = new Date();
 
     const newCommentReply = new CommentAnswer(
       commentsTotalLength + 1,
@@ -213,7 +214,7 @@ export default function CommentReply({
               <Image src={user.image?.webp} alt="userimage in circle" width="35px" height="35px" />
               <Username>{user.username}</Username>
               {you && <YouLabel>you</YouLabel>}
-              <UserCreatedAt>{createdAt}</UserCreatedAt>
+              <UserCreatedAt>{moment(createdAt).fromNow()}</UserCreatedAt>
             </UserInfo>
             {edit ? (
               <>

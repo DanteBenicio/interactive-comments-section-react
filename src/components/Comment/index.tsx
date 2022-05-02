@@ -59,7 +59,7 @@ export default function Comment({
       username: currentUserParam.username,
     };
 
-    const date = new Intl.DateTimeFormat('en-US').format(new Date());
+    const date = new Date();
 
     const newCommentReply = new CommentAnswer(
       commentsTotalLength + 1,
@@ -192,7 +192,7 @@ export default function Comment({
               <Image src={user.image?.webp} alt="userimage in circle" width="35px" height="35px" />
               <Username>{user.username}</Username>
               {you && <YouLabel>you</YouLabel>}
-              <UserCreatedAt>{createdAt}</UserCreatedAt>
+              <UserCreatedAt>{moment(createdAt).fromNow()}</UserCreatedAt>
             </UserInfo>
 
             {edit ? (
